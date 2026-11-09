@@ -1,8 +1,17 @@
 # Gotirekha User Frontend
 
-A React-based fleet-management interface for vehicle dashboards, live maps, trip history, reports, alarms, geofences, user and vehicle records, and operations management.
+A React and TypeScript fleet-management interface for viewing vehicle activity and managing fleet operations.
 
-The interface uses sample data. Backend/API integration is not configured.
+## Features
+
+- Fleet dashboard and live vehicle map
+- Trip history and playback
+- Reports and alarm history/settings
+- Geofence management
+- Vehicle and sub-user lists
+- Vehicle documents, maintenance, expenses, and fuel management
+
+The interface currently uses sample data. Backend/API integration is not configured, so changes made in the UI are not persisted to a server.
 
 ## Requirements
 
@@ -11,21 +20,23 @@ The interface uses sample data. Backend/API integration is not configured.
 
 ## Getting started
 
+Install dependencies and start the development server:
+
 ```bash
 npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. Tailwind CSS is loaded from its CDN, and map tiles require an internet connection.
+Open the local URL printed by Vite. The application loads Tailwind CSS from its CDN, and map tiles require an internet connection.
 
 ## Available scripts
 
-| Command           | Description                                         |
-| ----------------- | --------------------------------------------------- |
-| `npm run dev`     | Start the Vite development server                   |
-| `npm run build`   | Type-check and create a production build in `dist/` |
-| `npm run lint`    | Run ESLint                                          |
-| `npm run preview` | Preview the production build locally                |
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Type-check and create a production build in `dist/` |
+| `npm run lint` | Run ESLint |
+| `npm run preview` | Preview the production build locally |
 
 ## Project structure
 
@@ -35,8 +46,8 @@ src/
   features/
     alarms/               Alarm history and settings
     dashboard/            Fleet dashboard
-    documents/             Vehicle documents
-    expenses/              Expense management
+    documents/            Vehicle documents
+    expenses/             Expense management
     fuel/                  Fuel management
     geofences/             Geofence management
     history/               Trip playback
