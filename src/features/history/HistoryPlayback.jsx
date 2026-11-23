@@ -516,8 +516,8 @@ export default function History() {
 
         {/* GRAPH PANEL */}
         {isGraphVisible && (
-          <div className="h-40 flex flex-col">
-            <div className="flex items-center justify-between px-6 py-1.5 border-b border-gray-100 bg-gray-50/50">
+          <div className="h-28 flex flex-col">
+            <div className="flex items-center justify-between px-6 py-1 border-b border-gray-100 bg-gray-50/50">
               <div className="flex items-center space-x-6 text-xs font-bold">
                 <button
                   onClick={() => setActiveTab("Speed")}
@@ -534,8 +534,8 @@ export default function History() {
               </div>
             </div>
 
-            <div className="flex-1 p-3 relative flex items-end justify-between bg-white overflow-hidden">
-              <div className="absolute left-4 top-2 bottom-6 flex flex-col justify-between text-[10px] text-gray-400 font-medium">
+            <div className="flex-1 p-2 relative flex items-end justify-between bg-white overflow-hidden">
+              <div className="absolute left-4 top-1 bottom-5 flex flex-col justify-between text-[10px] text-gray-400 font-medium">
                 <span>80 kph</span>
                 <span>60 kph</span>
                 <span>40 kph</span>

@@ -217,7 +217,7 @@ export default function AlarmSettings() {
                             }`}
                           />
                         </button>
-                        <span>Push Notificat...</span>
+                        <span>Push Notification...</span>
                       </div>
                     </th>
                   </tr>

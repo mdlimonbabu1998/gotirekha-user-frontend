@@ -20,6 +20,11 @@
   transition: all 0.3s ease;
 }
 
+.leaflet-container {
+  background: #ffffff;
+  min-height: 0;
+}
+
 /* Fullscreen VTS Layout Transitions */
 .vts-app-wrapper.is-fullscreen aside,
 .vts-app-wrapper.is-fullscreen .vts-sidebar {

@@ -36,6 +36,7 @@ import {
   Polyline,
   Popup,
   TileLayer,
+  useMap,
   useMapEvents,
 } from "react-leaflet";
 
@@ -48,6 +49,34 @@ function ZoomHandler({ setZoom }) {
   });
   return null;
 }
+
+function MapResizeHandler({ isBottomPanelOpen }) {
+  const map = useMap();
+
+  useEffect(() => {
+    const container = map.getContainer();
+    let frameId;
+
+    const invalidateSize = () => {
+      cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(() => {
+        map.invalidateSize({ pan: false, animate: false });
+      });
+    };
+
+    const observer = new ResizeObserver(invalidateSize);
+    observer.observe(container);
+    invalidateSize();
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frameId);
+    };
+  }, [map, isBottomPanelOpen]);
+
+  return null;
+}
+
 // Updated Ruler click handler with precise single-point undo
 function RulerClickHandler({
   enabled,
@@ -225,9 +254,9 @@ export default function LiveMap() {
     toolToggles.cluster && currentZoom < 11 && checkedVehicles.length > 1;
 
   return (
-    <div className="flex-1 flex flex-col h-screen w-full bg-slate-100 overflow-hidden relative">
+    <div className="flex-1 flex flex-col h-full min-h-0 w-full bg-white overflow-hidden relative">
       {/* Map Surface Area filling available space above telemetry */}
-      <div className="relative flex-1 w-full overflow-hidden">
+      <div className="relative flex-1 min-h-0 w-full overflow-hidden bg-white">
         <MapContainer
           center={[23.8103, 90.4125]}
           zoom={13}
@@ -239,7 +268,7 @@ export default function LiveMap() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <ZoomHandler setZoom={setCurrentZoom} />
+          <MapResizeHandler isBottomPanelOpen={isBottomPanelOpen} />
           {/* ADD RULER CLICK HANDLER HERE INSIDE MAP CONTAINER */}
           <RulerClickHandler
             enabled={toolToggles.ruler}
@@ -688,7 +717,7 @@ export default function LiveMap() {
                                 </div>
                                 <div className="px-4 py-2 hover:bg-sky-50 hover:text-sky-600 flex items-center gap-2.5 cursor-pointer transition-colors">
                                   <Share2 className="w-4 h-4 text-slate-400" />{" "}
-                                  Sharings
+                                  Shares
                                 </div>
                                 <div className="px-4 py-2 hover:bg-sky-50 hover:text-sky-600 flex items-center gap-2.5 cursor-pointer transition-colors">
                                   <ShieldAlert className="w-4 h-4 text-slate-400" />{" "}
